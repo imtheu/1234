@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "1234",
+  "version": "1.0.0",
+  "description": "A Chrome extension that adds a countdown to any video",
+  "icons": {
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "action": {
+    "default_popup": "index.html"
+  }
+}
