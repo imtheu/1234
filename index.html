@@ -4,20 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1234</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button>Play</button>
+    <header class="u-spaceBottom">
+        <img src="./images/logo.svg" width="60" alt="1234" />
+        <div>
+            <a href="https://github.com/imtheu/1234" target="_blank" class="githubIcon">
+                <i title="View on GitHub">GitHub</i>
+            </a>
+        </div>
+    </header>
+    <div class="content" id="hasVideo">
+        <form>
+            <div class="playContainer u-spaceBottom">
+                <button type="button" class="playButton">Play</button>
+            </div>
+            <label for="beats">Countdown beats</label>
+            <input class="u-spaceBottom-small" id="beats" type="number" value="4" required>
+    
+            <label for="bpm">BPM</label>
+            <input class="u-spaceBottom-small" id="bpm" type="number" value="120" required>
+    
+            <label for="start_time">Start time offset</label>
+            <input class="u-spaceBottom-small" id="start_time" type="time" value="00:00:00" step="2" required>
+        </form>
+    </div>
 
-    <form>
-        <label for="beats">Countdown beats</label>
-        <input id="beats" type="number" value="4">
-
-        <label for="bpm">BPM</label>
-        <input id="bpm" type="number" value="120">
-
-        <label for="start_time">Start time offset</label>
-        <input id="start_time" type="text" value="00:00:00">
-    </form>
+    <div class="content isVisible" id="noVideo">
+        <p>No video detected on this page. Please navigate to a page with a video to use 1234.</p>
+    </div>
 
     <script src="index.js"></script>
 </body>
