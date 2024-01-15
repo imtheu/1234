@@ -86,14 +86,23 @@ input {
     margin-bottom: 8px;
 }
 
-.playContainer {
+.mainButtonContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 24px 0;
+
+    &.isPlaying {
+        .playButton {
+            display: none;
+        }
+        .stopButton {
+            display: block;
+        }
+    }
 }
 
-.playButton {
+.playButton, .stopButton {
     border: 0;
     background: transparent;
     cursor: pointer;
@@ -120,11 +129,7 @@ input {
         position: absolute;
         top: 6px;
         left: 6px;
-        -webkite-mask: url("./images/play-icon.svg") no-repeat;
-        mask: url("./images/play-icon.svg") no-repeat;
         background: #EE4266;  
-        -webkit-mask-position: calc(50% + 1px) 50%;
-        mask-position: calc(50% + 1px) 50%;
     }
 
     &:hover {
@@ -146,3 +151,22 @@ input {
     }
 }
 
+.playButton {
+    &::after {
+        -webkite-mask: url("./images/play-icon.svg") no-repeat;
+        mask: url("./images/play-icon.svg") no-repeat;
+        -webkit-mask-position: calc(50% + 1px) 50%;
+        mask-position: calc(50% + 1px) 50%;
+    }
+}
+
+.stopButton {
+    display: none;
+
+    &::after {
+        -webkite-mask: url("./images/stop-icon.svg") no-repeat;
+        mask: url("./images/stop-icon.svg") no-repeat;
+        -webkit-mask-position: center center;
+        mask-position: center center;
+    }
+}
