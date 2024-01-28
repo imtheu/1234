@@ -29,6 +29,6 @@ import {
     toggleHasVideo(false);
   }
 
-  const onPlay = startCounter().then(playVideo);
+  const onPlay = () => startCounter().then(playVideo);
   addMainButtonListeners(onPlay);
 })();
