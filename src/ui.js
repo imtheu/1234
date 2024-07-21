@@ -30,3 +30,14 @@ export const getFormData = () => {
 
   return formData;
 };
+
+export const addKeyboardListeners = () => {
+  document.addEventListener("keydown", ({ key }) => {
+    if (key === " ") {
+      const button = document.querySelector(
+        ".isPlaying #stopButton, #playButton"
+      );
+      button.click();
+    }
+  });
+};

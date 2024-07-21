@@ -5,6 +5,7 @@ import {
   addMainButtonListeners,
   getFormData,
   convertTimeToSeconds,
+  addKeyboardListeners,
 } from "./src/ui.js";
 import {
   addVideoListeners,
@@ -50,5 +51,6 @@ import {
     setVideoTime(timeInSeconds);
   };
 
+  addKeyboardListeners();
   addMainButtonListeners(onPlay, onStop);
 })();
