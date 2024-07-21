@@ -1,41 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>1234</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <header class="u-spaceBottom">
-        <img src="./images/logo.svg" width="60" alt="1234" />
-        <div>
-            <a href="https://github.com/imtheu/1234" target="_blank" class="githubIcon">
-                <i title="View on GitHub">GitHub</i>
-            </a>
-        </div>
+      <img src="./images/logo.svg" width="60" alt="1234" />
+      <div>
+        <a
+          href="https://github.com/imtheu/1234"
+          target="_blank"
+          class="githubIcon"
+        >
+          <i title="View on GitHub">GitHub</i>
+        </a>
+      </div>
     </header>
     <div class="content" id="hasVideo">
-        <form id="form">
-            <div class="mainButtonContainer u-spaceBottom" id="mainButton">
-                <button type="button" class="playButton" id="playButton">Play</button>
-                <button type="button" class="stopButton" id="stopButton">Stop</button>
-            </div>
-            <label for="beats">Countdown beats</label>
-            <input class="u-spaceBottom-small" id="beats" name="beats" type="number" value="4" required>
-    
-            <label for="bpm">BPM</label>
-            <input class="u-spaceBottom-small" id="bpm" name="bpm" type="number" value="120" required>
-    
-            <label for="start_time">Start time offset</label>
-            <input class="u-spaceBottom-small" id="start_time" name="start_time" type="time" value="00:00:00" step="2" required>
-        </form>
+      <form id="form">
+        <div class="mainButtonContainer u-spaceBottom" id="mainButton">
+          <button type="button" class="playButton" id="playButton">Play</button>
+          <button type="button" class="stopButton" id="stopButton">Stop</button>
+        </div>
+        <label for="beats">Countdown beats</label>
+        <input
+          class="u-spaceBottom-small"
+          id="beats"
+          name="beats"
+          type="number"
+          value="4"
+          required
+        />
+
+        <label for="bpm">BPM</label>
+        <input
+          class="u-spaceBottom-small"
+          id="bpm"
+          name="bpm"
+          type="number"
+          value="120"
+          required
+        />
+
+        <label for="start_time">Start time offset</label>
+        <input
+          class="u-spaceBottom-small"
+          id="start_time"
+          name="start_time"
+          type="time"
+          value="00:00:00"
+          step="2"
+          required
+        />
+      </form>
     </div>
 
     <div class="content isVisible" id="noVideo">
-        <p>No video detected on this page. Please navigate to a page with a video to use 1234.</p>
+      <p>
+        No video detected on this page. Please navigate to a page with a video
+        to use 1234.
+      </p>
     </div>
 
     <script type="module" src="index.js"></script>
-</body>
+  </body>
 </html>
