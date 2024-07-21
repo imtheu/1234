@@ -16,19 +16,19 @@
         </div>
     </header>
     <div class="content" id="hasVideo">
-        <form>
+        <form id="form">
             <div class="mainButtonContainer u-spaceBottom" id="mainButton">
                 <button type="button" class="playButton" id="playButton">Play</button>
                 <button type="button" class="stopButton" id="stopButton">Stop</button>
             </div>
             <label for="beats">Countdown beats</label>
-            <input class="u-spaceBottom-small" id="beats" type="number" value="4" required>
+            <input class="u-spaceBottom-small" id="beats" name="beats" type="number" value="4" required>
     
             <label for="bpm">BPM</label>
-            <input class="u-spaceBottom-small" id="bpm" type="number" value="120" required>
+            <input class="u-spaceBottom-small" id="bpm" name="bpm" type="number" value="120" required>
     
             <label for="start_time">Start time offset</label>
-            <input class="u-spaceBottom-small" id="start_time" type="time" value="00:00:00" step="2" required>
+            <input class="u-spaceBottom-small" id="start_time" name="start_time" type="time" value="00:00:00" step="2" required>
         </form>
     </div>
 

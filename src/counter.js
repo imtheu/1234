@@ -23,12 +23,11 @@ const beat = (resolve) => {
   }
 };
 
-export const startCounter = () => {
+export const startCounter = (bpm, beats) => {
   time = 0;
   beatCount = 0;
-  beatMax = 4;
+  beatMax = beats;
 
-  const bpm = 128;
   start = new Date().getTime();
   step = 60000 / bpm;
 

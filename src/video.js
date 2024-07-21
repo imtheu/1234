@@ -31,6 +31,21 @@ export const getInitialVideoState = async () => {
   );
 };
 
+export const setVideoTime = async (time) => {
+  const [{ id: tabId }] = await chrome.tabs.query({ active: true });
+  chrome.scripting.executeScript({
+    target: {
+      tabId,
+    },
+    args: [time],
+    func: (time) => {
+      const video = document.querySelector("video");
+      video.pause();
+      video.currentTime = time;
+    },
+  });
+};
+
 export const playVideo = async () => {
   const [{ id: tabId }] = await chrome.tabs.query({ active: true });
 

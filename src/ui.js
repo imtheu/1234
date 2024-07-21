@@ -13,5 +13,20 @@ export const toggleHasVideo = (hasVideo) => {
 
 export const addMainButtonListeners = (onPlay, onStop) => {
   const playButton = document.getElementById("playButton");
+  const stopButton = document.getElementById("stopButton");
+
   playButton.addEventListener("click", onPlay);
+  stopButton.addEventListener("click", onStop);
+};
+
+export const convertTimeToSeconds = (time) => {
+  const [hours, minutes, seconds] = time.split(":").map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+};
+
+export const getFormData = () => {
+  const form = document.querySelector("form");
+  const formData = new FormData(form);
+
+  return formData;
 };
