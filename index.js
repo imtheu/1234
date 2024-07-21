@@ -15,6 +15,12 @@ import {
 } from "./src/video.js";
 
 (async () => {
+  const [{ url }] = await chrome.tabs.query({ active: true });
+
+  if (url.startsWith("chrome://")) {
+    return;
+  }
+
   chrome.runtime.onMessage.addListener((req) => {
     if (req.startsWith("VIDEO:")) {
       const action = req.split(":")[1];
