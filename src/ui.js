@@ -34,9 +34,15 @@ export const getFormData = () => {
 export const addKeyboardListeners = () => {
   document.addEventListener("keydown", ({ key }) => {
     if (key === " ") {
-      const button = document.querySelector(
-        ".isPlaying #stopButton, #playButton"
-      );
+      const isPlaying = !!document.querySelector(".isPlaying");
+
+      let button;
+      if (isPlaying) {
+        button = document.querySelector("#stopButton");
+      } else {
+        button = document.querySelector("#playButton");
+      }
+
       button.click();
     }
   });
