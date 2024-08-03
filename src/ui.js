@@ -1,6 +1,12 @@
-export const togglePlayingState = (isPlaying) => {
+export const toggleButtonState = ({ isPlaying, isCounting }) => {
   const mainButtonContainerElement = document.getElementById("mainButton");
-  mainButtonContainerElement.classList.toggle("isPlaying", isPlaying);
+  if (typeof isPlaying !== "undefined") {
+    mainButtonContainerElement.classList.toggle("isPlaying", isPlaying);
+  }
+
+  if (typeof isCounting !== "undefined") {
+    mainButtonContainerElement.classList.toggle("isCounting", isCounting);
+  }
 };
 
 export const toggleHasVideo = (hasVideo) => {
@@ -27,6 +33,11 @@ export const addStartTimeEventListener = (onChange) => {
     );
 };
 
+export const updateCounter = (beat) => {
+  const counter = document.getElementById("counter");
+  counter.textContent = beat;
+};
+
 export const convertTimeToSeconds = (time) => {
   const [minutes, seconds, centiseconds] = time.split(":").map(Number);
   return minutes * 60 + seconds + centiseconds / 100;
@@ -45,6 +56,11 @@ export const addKeyboardListeners = () => {
     if (key === " ") {
       event.preventDefault();
       const isPlaying = !!document.querySelector(".isPlaying");
+      const isCounting = !!document.querySelector(".isCounting");
+
+      if (isCounting) {
+        return;
+      }
 
       let button;
       if (isPlaying) {

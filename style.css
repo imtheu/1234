@@ -1,172 +1,196 @@
 * {
-    margin: 0;
-    padding: 0;
-    user-select: none;
-    -webkit-user-drag: none;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+  box-sizing: border-box;
 }
 
 body {
-    background: #fff;
-    padding: 32px 20px 24px;
-    min-width: 280px;
+  background: #fff;
+  padding: 32px 20px 24px;
+  min-width: 280px;
 }
 
-
 header {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #222;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #222;
 }
 
 label {
-    font-size: 0.833rem;
-    line-height: 1.6;
-    display: block;
-    color: #616161;
+  font-size: 0.833rem;
+  line-height: 1.6;
+  display: block;
+  color: #616161;
 }
 
 input {
-    width: 100%;
-    max-width: 100%;
-    padding: 7px 11px;
-    font-size: 1rem;
-    box-shadow: rgba(10, 10, 10, 0.05) 0px 1px 2px 0px inset;
-    border: 1px solid #DBDBDB;
-    border-radius: 6px;
-    outline: none;
+  width: 100%;
+  max-width: 100%;
+  padding: 7px 11px;
+  font-size: 1rem;
+  box-shadow: rgba(10, 10, 10, 0.05) 0px 1px 2px 0px inset;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  outline: none;
 
-    &:focus {
-        box-shadow: rgba(238, 66, 102, 0.25) 0px 0px 0px 2px;
-        border-color: #EE4266;
-    }
+  &:focus {
+    box-shadow: rgba(238, 66, 102, 0.25) 0px 0px 0px 2px;
+    border-color: #ee4266;
+  }
 }
 
 .githubIcon {
-    i {
-        display: block;
-        font-size: 0;
-        -webkit-mask: url("./images/github-icon.svg");
-        mask: url("./images/github-icon.svg");
-        -webkit-mask-size: cover;
-        mask-size: cover;
-        width: 28px;
-        height: 28px;
-        background: #DBDBDB;
-        transition: background-color 0.2s;
-    }
+  i {
+    display: block;
+    font-size: 0;
+    -webkit-mask: url("./images/github-icon.svg");
+    mask: url("./images/github-icon.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    width: 28px;
+    height: 28px;
+    background: #dbdbdb;
+    transition: background-color 0.2s;
+  }
 
-    &:hover i {
-        background: #c1c1c1;
-    }
+  &:hover i {
+    background: #c1c1c1;
+  }
 
-    &:active i {
-        background: #dfdfdf;
-    }
+  &:active i {
+    background: #dfdfdf;
+  }
 }
 
 .content {
-    display: none;
+  display: none;
 
-    &.isVisible {
-        display: block;
-    }
+  &.isVisible {
+    display: block;
+  }
 }
 
 .u-spaceBottom {
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .u-spaceBottom-small {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .mainButtonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 24px 0;
+  position: relative;
 
-    &.isPlaying {
-        .playButton {
-            display: none;
-        }
-        .stopButton {
-            display: block;
-        }
+  &.isPlaying {
+    .playButton {
+      display: none;
     }
+    .stopButton {
+      display: block;
+    }
+  }
+
+  &.isCounting {
+    .playButton,
+    .stopButton {
+      pointer-events: none;
+      &::after {
+        opacity: 0;
+      }
+    }
+    .counter {
+      display: block;
+    }
+  }
 }
 
-.playButton, .stopButton {
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    font-size: 0.694rem;
-    color: #616161;
-    position: relative;
-    
-    &::before, &::after {
-        content: "";
-        display: block;
-        width: 32px;
-        height: 32px;
-        padding: 12px;
-        transition: background-color 0.2s, border-color 0.2s;
-    }
+.counter {
+  display: none;
+  position: absolute;
+  font-weight: bold;
+  font-size: 24px;
+  top: 16px;
+  color: #ee4266;
+}
 
+.playButton,
+.stopButton {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.694rem;
+  color: #616161;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 32px;
+    padding: 12px;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  &::before {
+    border-radius: 50%;
+    border: 6px solid #ee4266;
+    margin-bottom: 4px;
+  }
+
+  &::after {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: #ee4266;
+  }
+
+  &:hover {
     &::before {
-        border-radius: 50%;
-        border: 6px solid #EE4266;
-        margin-bottom: 4px;
+      border-color: #d13a5a;
     }
-
     &::after {
-        position: absolute;
-        top: 6px;
-        left: 6px;
-        background: #EE4266;  
+      background: #d13a5a;
     }
+  }
 
-    &:hover {
-        &::before {
-            border-color: #D13A5A;
-        }
-        &::after {
-            background: #D13A5A;
-        }
+  &:active {
+    &::before {
+      border-color: #f05575;
     }
-
-    &:active {
-        &::before {
-            border-color: #f05575;
-        }
-        &::after {
-            background: #f05575;
-        }
+    &::after {
+      background: #f05575;
     }
+  }
 }
 
 .playButton {
-    &::after {
-        -webkite-mask: url("./images/play-icon.svg") no-repeat;
-        mask: url("./images/play-icon.svg") no-repeat;
-        -webkit-mask-position: calc(50% + 1px) 50%;
-        mask-position: calc(50% + 1px) 50%;
-    }
+  &::after {
+    -webkite-mask: url("./images/play-icon.svg") no-repeat;
+    mask: url("./images/play-icon.svg") no-repeat;
+    -webkit-mask-position: calc(50% + 1px) 50%;
+    mask-position: calc(50% + 1px) 50%;
+  }
 }
 
 .stopButton {
-    display: none;
+  display: none;
 
-    &::after {
-        -webkite-mask: url("./images/stop-icon.svg") no-repeat;
-        mask: url("./images/stop-icon.svg") no-repeat;
-        -webkit-mask-position: center center;
-        mask-position: center center;
-    }
+  &::after {
+    -webkite-mask: url("./images/stop-icon.svg") no-repeat;
+    mask: url("./images/stop-icon.svg") no-repeat;
+    -webkit-mask-position: center center;
+    mask-position: center center;
+  }
 }

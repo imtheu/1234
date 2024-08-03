@@ -1,12 +1,13 @@
 import { startCounter } from "./src/counter.js";
 import {
-  togglePlayingState,
+  toggleButtonState,
   toggleHasVideo,
   addMainButtonListeners,
   getFormData,
   convertTimeToSeconds,
   addKeyboardListeners,
   addStartTimeEventListener,
+  updateCounter,
 } from "./src/ui.js";
 import {
   addVideoListeners,
@@ -26,13 +27,13 @@ import {
     if (req.startsWith("VIDEO:")) {
       const action = req.split(":")[1];
       const isPlaying = action === "PLAY";
-      togglePlayingState(isPlaying);
+      toggleButtonState({ isPlaying });
     }
   });
 
   try {
     const { playing } = await getInitialVideoState();
-    togglePlayingState(playing);
+    toggleButtonState({ isPlaying: playing });
     toggleHasVideo(true);
 
     await addVideoListeners();
@@ -47,8 +48,13 @@ import {
     const startTime = formData.get("start_time");
     const timeInSeconds = convertTimeToSeconds(startTime);
     setVideoTime(timeInSeconds);
+    toggleButtonState({ isCounting: true });
 
-    startCounter(+bpm, +beats).then(playVideo);
+    startCounter(+bpm, +beats, (beat) => updateCounter(beat)).then(() => {
+      playVideo();
+      toggleButtonState({ isCounting: false });
+      updateCounter(0);
+    });
   };
 
   const onStop = () => {
