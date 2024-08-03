@@ -3,13 +3,16 @@
   "name": "1234",
   "version": "1.0.0",
   "description": "A Chrome extension that adds a countdown to any video",
+  "author": {
+    "email": "mathfrmorais@gmail.com"
+  },
   "icons": {
-    "48": "images/icon-48.png",
-    "128": "images/icon-128.png"
+    "48": "src/assets/images/icon-48.png",
+    "128": "src/assets/images/icon-128.png"
   },
   "permissions": ["scripting", "activeTab"],
   "host_permissions": ["http://*/*", "https://*/*"],
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "./src/html/index.html"
   }
 }

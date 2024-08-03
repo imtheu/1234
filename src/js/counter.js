@@ -4,7 +4,7 @@ let beatMax;
 let beatCount = 0;
 let time = 0;
 
-const audioPath = "./sounds/metronome.mp3";
+const audioPath = "../assets/sounds/metronome.mp3";
 const audios = [new Audio(audioPath), new Audio(audioPath)];
 
 const beat = (resolve, onCounterChange) => {

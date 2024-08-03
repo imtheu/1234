@@ -1,4 +1,4 @@
-import { startCounter } from "./src/counter.js";
+import { startCounter } from "./counter.js";
 import {
   toggleButtonState,
   toggleHasVideo,
@@ -8,13 +8,13 @@ import {
   addKeyboardListeners,
   addStartTimeEventListener,
   updateCounter,
-} from "./src/ui.js";
+} from "./ui.js";
 import {
   addVideoListeners,
   getInitialVideoState,
   playVideo,
   setVideoTime,
-} from "./src/video.js";
+} from "./video.js";
 
 (async () => {
   const [{ url }] = await chrome.tabs.query({ active: true });

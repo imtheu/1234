@@ -50,8 +50,8 @@ input {
   i {
     display: block;
     font-size: 0;
-    -webkit-mask: url("./images/github-icon.svg");
-    mask: url("./images/github-icon.svg");
+    -webkit-mask: url("../assets/images/github-icon.svg");
+    mask: url("../assets/images/github-icon.svg");
     -webkit-mask-size: cover;
     mask-size: cover;
     width: 28px;
@@ -177,8 +177,8 @@ input {
 
 .playButton {
   &::after {
-    -webkite-mask: url("./images/play-icon.svg") no-repeat;
-    mask: url("./images/play-icon.svg") no-repeat;
+    -webkite-mask: url("../assets/images/play-icon.svg") no-repeat;
+    mask: url("../assets/images/play-icon.svg") no-repeat;
     -webkit-mask-position: calc(50% + 1px) 50%;
     mask-position: calc(50% + 1px) 50%;
   }
@@ -188,8 +188,8 @@ input {
   display: none;
 
   &::after {
-    -webkite-mask: url("./images/stop-icon.svg") no-repeat;
-    mask: url("./images/stop-icon.svg") no-repeat;
+    -webkite-mask: url("../assets/images/stop-icon.svg") no-repeat;
+    mask: url("../assets/images/stop-icon.svg") no-repeat;
     -webkit-mask-position: center center;
     mask-position: center center;
   }
