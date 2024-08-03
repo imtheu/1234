@@ -19,9 +19,17 @@ export const addMainButtonListeners = (onPlay, onStop) => {
   stopButton.addEventListener("click", onStop);
 };
 
+export const addStartTimeEventListener = (onChange) => {
+  document
+    .getElementById("start_time")
+    .addEventListener("change", ({ target }) =>
+      onChange(convertTimeToSeconds(target.value))
+    );
+};
+
 export const convertTimeToSeconds = (time) => {
-  const [hours, minutes, seconds] = time.split(":").map(Number);
-  return hours * 3600 + minutes * 60 + seconds;
+  const [minutes, seconds, centiseconds] = time.split(":").map(Number);
+  return minutes * 60 + seconds + centiseconds / 100;
 };
 
 export const getFormData = () => {
@@ -32,8 +40,10 @@ export const getFormData = () => {
 };
 
 export const addKeyboardListeners = () => {
-  document.addEventListener("keydown", ({ key }) => {
+  document.addEventListener("keydown", (event) => {
+    const { key } = event;
     if (key === " ") {
+      event.preventDefault();
       const isPlaying = !!document.querySelector(".isPlaying");
 
       let button;
