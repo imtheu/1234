@@ -7,11 +7,14 @@
     "email": "mathfrmorais@gmail.com"
   },
   "icons": {
-    "48": "src/assets/images/icon-48.png",
-    "128": "src/assets/images/icon-128.png"
+    "48": "assets/images/icon-48.png",
+    "128": "assets/images/icon-128.png"
   },
-  "permissions": ["scripting", "activeTab"],
+  "permissions": [
+    "scripting",
+    "activeTab"
+  ],
   "action": {
-    "default_popup": "./src/html/index.html"
+    "default_popup": "./html/index.html"
   }
 }

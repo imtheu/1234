@@ -1,0 +1,28 @@
+{
+  "verifyConditions": false,
+  "publish": {
+    "target": "local"
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    [
+      "semantic-release-chrome",
+      {
+        "extensionId": "ohalpccdgahgekiagfnldjpicedfcfha",
+        "asset": "dist/1234.zip",
+        "distFolder": "src",
+        "manifestPath": "src/manifest.json"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          "dist/1234.zip"
+        ]
+      }
+    ]
+  ]
+}
