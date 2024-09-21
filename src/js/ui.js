@@ -27,7 +27,7 @@ export const addMainButtonListeners = (onPlay, onStop) => {
 
 export const addStartTimeEventListener = (onChange) => {
   document
-    .getElementById("start_time")
+    .getElementById("startTime")
     .addEventListener("change", ({ target }) =>
       onChange(convertTimeToSeconds(target.value))
     );
@@ -77,4 +77,12 @@ export const addKeyboardListeners = () => {
 export const addSaveListener = (onSave) => {
   const saveButton = document.getElementById("saveButton");
   saveButton.addEventListener("click", onSave);
+};
+
+export const setInitialFormData = (data) => {
+  Object.keys(data).forEach((key) => {
+    if (key !== "pageMetadata") {
+      document.querySelector(`form #${key}`).value = data[key];
+    }
+  });
 };

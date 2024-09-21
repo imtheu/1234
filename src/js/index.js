@@ -1,5 +1,5 @@
 import { startCounter } from "./counter.js";
-import { saveData } from "./storage.js";
+import { getData, saveData } from "./storage.js";
 import {
   toggleButtonState,
   toggleHasVideo,
@@ -10,6 +10,7 @@ import {
   addStartTimeEventListener,
   updateCounter,
   addSaveListener,
+  setInitialFormData,
 } from "./ui.js";
 import {
   addVideoListeners,
@@ -44,6 +45,16 @@ import {
   } catch {
     toggleHasVideo(false);
   }
+
+  try {
+    const metadata = await getVideoPageMetadata();
+    const videoUrl = metadata["og:url"] ?? (await getVideoPageUrl());
+
+    if (videoUrl) {
+      const settings = await getData(videoUrl);
+      setInitialFormData(settings);
+    }
+  } catch {}
 
   const extractData = (formData) => {
     const bpm = formData.get("bpm");
