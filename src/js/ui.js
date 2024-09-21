@@ -73,3 +73,8 @@ export const addKeyboardListeners = () => {
     }
   });
 };
+
+export const addSaveListener = (onSave) => {
+  const saveButton = document.getElementById("saveButton");
+  saveButton.addEventListener("click", onSave);
+};

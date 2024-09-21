@@ -194,3 +194,20 @@ input {
     mask-position: center center;
   }
 }
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 6px;
+  background: #ee4266;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background: #d13a5a;
+  }
+}

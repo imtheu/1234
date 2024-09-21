@@ -1,4 +1,5 @@
 import { startCounter } from "./counter.js";
+import { saveData } from "./storage.js";
 import {
   toggleButtonState,
   toggleHasVideo,
@@ -8,10 +9,13 @@ import {
   addKeyboardListeners,
   addStartTimeEventListener,
   updateCounter,
+  addSaveListener,
 } from "./ui.js";
 import {
   addVideoListeners,
   getInitialVideoState,
+  getVideoPageMetadata,
+  getVideoPageUrl,
   playVideo,
   setVideoTime,
 } from "./video.js";
@@ -41,11 +45,20 @@ import {
     toggleHasVideo(false);
   }
 
-  const onPlay = () => {
-    const formData = getFormData();
+  const extractData = (formData) => {
     const bpm = formData.get("bpm");
     const beats = formData.get("beats");
     const startTime = formData.get("start_time");
+
+    return {
+      bpm,
+      beats,
+      startTime,
+    };
+  };
+
+  const onPlay = () => {
+    const { beats, bpm, startTime } = extractData(getFormData());
     const timeInSeconds = convertTimeToSeconds(startTime);
     setVideoTime(timeInSeconds);
     toggleButtonState({ isCounting: true });
@@ -64,7 +77,25 @@ import {
     setVideoTime(timeInSeconds);
   };
 
+  const onSave = async () => {
+    const data = extractData(getFormData());
+    const metadata = await getVideoPageMetadata();
+
+    let videoUrl = metadata["og:url"];
+
+    if (!videoUrl) {
+      videoUrl = await getVideoPageUrl();
+    }
+
+    if (!videoUrl) {
+      alert("Unable to save the settings for this site");
+    }
+
+    saveData({ [videoUrl]: { ...data, pageMetadata: metadata } });
+  };
+
   addKeyboardListeners();
   addMainButtonListeners(onPlay, onStop);
+  addSaveListener(onSave);
   addStartTimeEventListener((time) => setVideoTime(time));
 })();
