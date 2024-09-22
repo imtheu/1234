@@ -20,6 +20,7 @@ import {
   playVideo,
   setVideoTime,
 } from "./video.js";
+import burgerMenu from "./burgerMenu.js";
 
 (async () => {
   const [{ url }] = await chrome.tabs.query({ active: true });
@@ -109,4 +110,5 @@ import {
   addMainButtonListeners(onPlay, onStop);
   addSaveListener(onSave);
   addStartTimeEventListener((time) => setVideoTime(time));
+  burgerMenu.initialize();
 })();

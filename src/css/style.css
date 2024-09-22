@@ -15,6 +15,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 p {
@@ -44,6 +45,87 @@ input {
     box-shadow: rgba(238, 66, 102, 0.25) 0px 0px 0px 2px;
     border-color: #ee4266;
   }
+}
+
+.burgerMenu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+
+  i {
+    font-size: 0;
+    display: block;
+    -webkit-mask: url("../assets/images/burger-menu-icon.svg");
+    mask: url("../assets/images/burger-menu-icon.svg");
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    width: 20px;
+    height: 20px;
+    background: #ee4266;
+  }
+
+  &:hover i {
+    background: #d13a5a;
+  }
+}
+
+.burgerMenu {
+  background: #fff;
+  border: none;
+  position: fixed;
+  top: 75px;
+  left: 0;
+  width: 80%;
+  height: calc(100% - 75px);
+  z-index: 10;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.2s;
+  display: block;
+  padding: 24px;
+
+  &[open] {
+    transform: translateX(0);
+  }
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    font-size: 14px;
+    color: #ee4266;
+    text-decoration: none;
+
+    &:hover {
+      color: #d13a5a;
+    }
+  }
+
+  li + li {
+    margin-top: 20px;
+  }
+}
+
+.burgerMenu[open] + .burgerMenu-backdrop {
+  opacity: 0.1;
+  pointer-events: all;
+}
+
+.burgerMenu-backdrop {
+  width: 100%;
+  height: calc(100% - 75px);
+  top: 75px;
+  position: fixed;
+  background: #000;
+  opacity: 0;
+  left: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.logo {
+  align-self: center;
 }
 
 .githubIcon {

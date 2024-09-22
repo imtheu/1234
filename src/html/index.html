@@ -8,7 +8,10 @@
   </head>
   <body>
     <header class="u-spaceBottom">
-      <img src="../assets/images/logo.svg" width="60" alt="1234" />
+      <button class="burgerMenu-button" id="burgerMenu-button">
+        <i title="Menu">Menu</i>
+      </button>
+      <img class="logo" src="../assets/images/logo.svg" width="60" alt="1234" />
       <div>
         <a
           href="https://github.com/imtheu/1234"
@@ -19,6 +22,17 @@
         </a>
       </div>
     </header>
+
+    <dialog class="burgerMenu" id="burgerMenu">
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./saved-videos.html">Saved videos</a></li>
+        </ul>
+      </nav>
+    </dialog>
+    <div class="burgerMenu-backdrop" id="backdrop"></div>
+
     <div class="content" id="hasVideo">
       <form id="form">
         <div class="mainButtonContainer u-spaceBottom" id="mainButton">
