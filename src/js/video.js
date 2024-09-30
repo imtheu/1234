@@ -97,7 +97,7 @@ export const getVideoPageMetadata = async () => {
           tabId,
         },
         func: () => {
-          const metatags = document.querySelectorAll(
+          const metatags = document.head.querySelectorAll(
             `
             meta[property="og:url"],
             meta[property="og:title"],
@@ -106,10 +106,29 @@ export const getVideoPageMetadata = async () => {
             `
           );
 
-          const metadata = [...metatags].reduce((acc, el) => {
-            acc[el.getAttribute("property")] = el.content;
-            return acc;
-          }, {});
+          const title = document.head.querySelector("title").textContent;
+          const url = window.location.href;
+
+          const isYoutube = url.includes("youtube"); // YouTube does not update the metatags during AJAX navigation
+          let thumbnail;
+          if (isYoutube) {
+            const getYouTubeVideoId = (url) =>
+              new URL(url).searchParams.get("v");
+
+            const getThumbnail = (id) =>
+              `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+
+            const videoId = getYouTubeVideoId(url);
+            thumbnail = getThumbnail(videoId);
+          }
+
+          const metadata = [...metatags].reduce(
+            (acc, el) => {
+              acc[el.getAttribute("property")] = el.content;
+              return acc;
+            },
+            { url, thumbnail, isYoutube, title }
+          );
 
           if (metadata) {
             return metadata;

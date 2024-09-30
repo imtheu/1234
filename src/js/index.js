@@ -93,7 +93,10 @@ import burgerMenu from "./burgerMenu.js";
     const data = extractData(getFormData());
     const metadata = await getVideoPageMetadata();
 
-    let videoUrl = metadata["og:url"];
+    let videoUrl =
+      metadata.isYoutube || !metadata["og:url"]
+        ? metadata.url
+        : metadata["og:url"];
 
     if (!videoUrl) {
       videoUrl = await getVideoPageUrl();

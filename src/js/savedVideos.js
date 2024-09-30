@@ -7,12 +7,22 @@ const list = document.getElementById("savedVideosList");
 const createElement = (metadata, url) => {
   const clone = template.content.cloneNode(true);
 
+  const titleEl = clone.querySelector("p");
+  const infoEl = clone.querySelector("span");
+  const thumbEl = clone.querySelector("img");
+
   if (metadata) {
-    clone.querySelector("p").textContent = metadata["og:title"];
-    clone.querySelector("span").textContent = metadata["og:site_name"];
-    clone.querySelector("img").src = metadata["og:image"];
+    if (metadata.isYoutube) {
+      titleEl.textContent = metadata.title;
+      thumbEl.src = metadata.thumbnail;
+    } else {
+      titleEl.textContent = metadata["og:title"];
+      thumbEl.src = metadata["og:image"];
+    }
+
+    infoEl.textContent = metadata["og:site_name"];
   } else {
-    clone.querySelector("p").textContent = url;
+    titleEl.textContent = url;
   }
 
   clone.querySelector("a").href = url;
