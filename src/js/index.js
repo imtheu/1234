@@ -25,6 +25,8 @@ import burgerMenu from "./burgerMenu.js";
 (async () => {
   const [{ url }] = await chrome.tabs.query({ active: true });
 
+  burgerMenu.initialize();
+
   if (url.startsWith("chrome://")) {
     return;
   }
@@ -113,5 +115,4 @@ import burgerMenu from "./burgerMenu.js";
   addMainButtonListeners(onPlay, onStop);
   addSaveListener(onSave);
   addStartTimeEventListener((time) => setVideoTime(time));
-  burgerMenu.initialize();
 })();
