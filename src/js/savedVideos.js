@@ -13,7 +13,8 @@ const onDelete = async (url) => {
   }
 };
 
-const createElement = (metadata, url) => {
+const createElement = (data, url) => {
+  const metadata = data.pageMetadata;
   const clone = template.content.cloneNode(true);
 
   const titleEl = clone.querySelector("p");
@@ -30,10 +31,12 @@ const createElement = (metadata, url) => {
       thumbEl.src = metadata["og:image"];
     }
 
-    infoEl.textContent = metadata["og:site_name"];
+    infoEl.textContent = `${metadata["og:site_name"]} - `;
   } else {
     titleEl.textContent = url;
   }
+
+  infoEl.textContent += `${data.beats} beats - ${data.bpm} bpm - ${data.startTime}`;
 
   clone.querySelector("a").href = url;
 
@@ -56,7 +59,7 @@ const createElement = (metadata, url) => {
 
   Object.keys(videos).forEach((url) => {
     const video = videos[url];
-    const element = createElement(video.pageMetadata, url);
+    const element = createElement(video, url);
     list.appendChild(element);
   });
 
