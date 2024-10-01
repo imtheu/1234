@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/imtheu/1234/compare/v1.0.0...v1.1.0) (2024-10-01)
+
+
+### Features
+
+* **savedVideos:** Save and display settings for each video ([#2](https://github.com/imtheu/1234/issues/2)) ([2d97113](https://github.com/imtheu/1234/commit/2d97113bc9d165260e99eed17fe3e445c5925558))
+
 # 1.0.0 (2024-08-08)
 
 
