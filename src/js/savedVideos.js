@@ -1,8 +1,17 @@
 import burgerMenu from "./burgerMenu.js";
-import { getAll } from "./storage.js";
+import { getAll, removeData } from "./storage.js";
 
 const template = document.getElementById("savedVideoTemplate");
 const list = document.getElementById("savedVideosList");
+
+const onDelete = async (url) => {
+  try {
+    await removeData(url);
+    list.querySelector(`a[href="${url}"]`).parentElement.remove();
+  } catch {
+    alert("Failed to remove");
+  }
+};
 
 const createElement = (metadata, url) => {
   const clone = template.content.cloneNode(true);
@@ -10,6 +19,7 @@ const createElement = (metadata, url) => {
   const titleEl = clone.querySelector("p");
   const infoEl = clone.querySelector("span");
   const thumbEl = clone.querySelector("img");
+  const deleteEl = clone.querySelector("button");
 
   if (metadata) {
     if (metadata.isYoutube) {
@@ -26,6 +36,17 @@ const createElement = (metadata, url) => {
   }
 
   clone.querySelector("a").href = url;
+
+  deleteEl.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (
+      confirm(
+        `Are you sure you want to delete the saved settings for the video "${titleEl.textContent}"?`
+      )
+    ) {
+      onDelete(url);
+    }
+  });
 
   return clone;
 };
