@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1234 - Saved videos</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header class="u-spaceBottom">
+      <button class="burgerMenu-button" id="burgerMenu-button">
+        <i title="Menu">Menu</i>
+      </button>
+      <img class="logo" src="../assets/images/logo.svg" width="60" alt="1234" />
+      <div>
+        <a
+          href="https://github.com/imtheu/1234"
+          target="_blank"
+          class="githubIcon"
+        >
+          <i title="View on GitHub">GitHub</i>
+        </a>
+      </div>
+    </header>
+
+    <dialog class="burgerMenu" id="burgerMenu">
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./saved-videos.html">Saved videos</a></li>
+        </ul>
+      </nav>
+    </dialog>
+    <div class="burgerMenu-backdrop" id="backdrop"></div>
+
+    <div class="content isVisible" id="hasVideos">
+      <ul class="savedVideosList" id="savedVideosList"></ul>
+      <p class="empty">No video has been saved yet.</p>
+    </div>
+
+    <template id="savedVideoTemplate">
+      <li>
+        <a target="_blank" rel="nofollow">
+          <img alt="" />
+          <div>
+            <p></p>
+            <span></span>
+            <button>Delete</button>
+          </div>
+        </a>
+      </li>
+    </template>
+
+    <script type="module" src="../js/savedVideos.js"></script>
+  </body>
+</html>

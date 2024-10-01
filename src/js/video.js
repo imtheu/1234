@@ -86,3 +86,71 @@ export const addVideoListeners = async () => {
     },
   });
 };
+
+export const getVideoPageMetadata = async () => {
+  const [{ id: tabId }] = await chrome.tabs.query({ active: true });
+
+  return new Promise((resolve, reject) =>
+    chrome.scripting.executeScript(
+      {
+        target: {
+          tabId,
+        },
+        func: () => {
+          const metatags = document.head.querySelectorAll(
+            `
+            meta[property="og:url"],
+            meta[property="og:title"],
+            meta[property="og:image"],
+            meta[property="og:site_name"]
+            `
+          );
+
+          const title = document.head.querySelector("title").textContent;
+          const url = window.location.href;
+
+          const isYoutube = url.includes("youtube"); // YouTube does not update the metatags during AJAX navigation
+          let thumbnail;
+          if (isYoutube) {
+            const getYouTubeVideoId = (url) =>
+              new URL(url).searchParams.get("v");
+
+            const getThumbnail = (id) =>
+              `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+
+            const videoId = getYouTubeVideoId(url);
+            thumbnail = getThumbnail(videoId);
+          }
+
+          const metadata = [...metatags].reduce(
+            (acc, el) => {
+              acc[el.getAttribute("property")] = el.content;
+              return acc;
+            },
+            { url, thumbnail, isYoutube, title }
+          );
+
+          if (metadata) {
+            return metadata;
+          }
+
+          return {
+            error: "NOT_FOUND",
+          };
+        },
+      },
+      ([{ result }]) => {
+        if (result.error) {
+          return reject(result.error);
+        }
+
+        resolve(result);
+      }
+    )
+  );
+};
+
+export const getVideoPageUrl = async () => {
+  const [{ url }] = await chrome.tabs.query({ active: true });
+  return url;
+};

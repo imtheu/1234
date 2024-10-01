@@ -1,4 +1,5 @@
 import { startCounter } from "./counter.js";
+import { getData, saveData } from "./storage.js";
 import {
   toggleButtonState,
   toggleHasVideo,
@@ -8,16 +9,23 @@ import {
   addKeyboardListeners,
   addStartTimeEventListener,
   updateCounter,
+  addSaveListener,
+  setInitialFormData,
 } from "./ui.js";
 import {
   addVideoListeners,
   getInitialVideoState,
+  getVideoPageMetadata,
+  getVideoPageUrl,
   playVideo,
   setVideoTime,
 } from "./video.js";
+import burgerMenu from "./burgerMenu.js";
 
 (async () => {
   const [{ url }] = await chrome.tabs.query({ active: true });
+
+  burgerMenu.initialize();
 
   if (url.startsWith("chrome://")) {
     return;
@@ -41,11 +49,30 @@ import {
     toggleHasVideo(false);
   }
 
-  const onPlay = () => {
-    const formData = getFormData();
+  try {
+    const metadata = await getVideoPageMetadata();
+    const videoUrl = metadata["og:url"] ?? (await getVideoPageUrl());
+
+    if (videoUrl) {
+      const settings = await getData(videoUrl);
+      setInitialFormData(settings);
+    }
+  } catch {}
+
+  const extractData = (formData) => {
     const bpm = formData.get("bpm");
     const beats = formData.get("beats");
     const startTime = formData.get("start_time");
+
+    return {
+      bpm,
+      beats,
+      startTime,
+    };
+  };
+
+  const onPlay = () => {
+    const { beats, bpm, startTime } = extractData(getFormData());
     const timeInSeconds = convertTimeToSeconds(startTime);
     setVideoTime(timeInSeconds);
     toggleButtonState({ isCounting: true });
@@ -64,7 +91,28 @@ import {
     setVideoTime(timeInSeconds);
   };
 
+  const onSave = async () => {
+    const data = extractData(getFormData());
+    const metadata = await getVideoPageMetadata();
+
+    let videoUrl =
+      metadata.isYoutube || !metadata["og:url"]
+        ? metadata.url
+        : metadata["og:url"];
+
+    if (!videoUrl) {
+      videoUrl = await getVideoPageUrl();
+    }
+
+    if (!videoUrl) {
+      alert("Unable to save the settings for this site");
+    }
+
+    saveData({ [videoUrl]: { ...data, pageMetadata: metadata } });
+  };
+
   addKeyboardListeners();
   addMainButtonListeners(onPlay, onStop);
+  addSaveListener(onSave);
   addStartTimeEventListener((time) => setVideoTime(time));
 })();
