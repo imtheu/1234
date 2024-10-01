@@ -371,4 +371,12 @@ input {
       color: #fff;
     }
   }
+
+  &:empty + .empty {
+    display: block;
+  }
+
+  &:not(:empty) + .empty {
+    display: none;
+  }
 }
