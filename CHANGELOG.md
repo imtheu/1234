@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/imtheu/1234/compare/v1.1.0...v1.2.0) (2024-10-02)
+
+
+### Features
+
+* **burgerMenu:** Add links to report bugs and submit reviews ([#3](https://github.com/imtheu/1234/issues/3)) ([8da5cfd](https://github.com/imtheu/1234/commit/8da5cfdc714966de722a8411a005383347bf9332))
+
 # [1.1.0](https://github.com/imtheu/1234/compare/v1.0.0...v1.1.0) (2024-10-01)
 
 
