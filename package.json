@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A Chrome extension that adds a countdown to any video",
   "main": "src/js/index.js",
+  "scripts": {
+    "release": "npx env-cmd npx semantic-release --no-ci"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/imtheu/1234.git"
@@ -23,6 +26,7 @@
   "homepage": "https://github.com/imtheu/1234#readme",
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
-    "semantic-release-chrome": "^3.2.0"
+    "semantic-release-chrome": "^3.2.0",
+    "semantic-release-plugin-update-version-in-files": "^1.1.0"
   }
 }

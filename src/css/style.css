@@ -380,3 +380,10 @@ input {
     display: none;
   }
 }
+
+.version {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  color: #c1c1c1;
+}
