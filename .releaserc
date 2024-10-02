@@ -23,6 +23,15 @@
           "dist/1234.zip"
         ]
       }
+    ],
+    [
+      "semantic-release-plugin-update-version-in-files",
+      {
+        "files": [
+          "src/html/*.html"
+        ],
+        "placeholder": "{{version}}"
+      }
     ]
   ]
 }
